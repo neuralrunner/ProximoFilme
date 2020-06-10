@@ -23,6 +23,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView list = findViewById(R.id.list_filmes);
+        ArrayList<ItemFilme> arrayList = returnArrayListItemFilmeMock();
+
+        FilmesAdapter adapter = new FilmesAdapter(this,arrayList);
+        list.setAdapter(adapter);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_atualizar:
+                Toast.makeText(this,"Atualizando os Filmes...",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    //Mockup de Filmes
+    public ArrayList<ItemFilme> returnArrayListItemFilmeMock(){
         ArrayList<ItemFilme> arrayList = new ArrayList<>();
 
         arrayList.add(new ItemFilme("Predator", "Schwarzenegger as the leader of an " +
@@ -50,25 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 "NASA pilot Joseph Cooper is now a farmer.",
                 "26/10/2014",4));
 
-        FilmesAdapter adapter = new FilmesAdapter(this,arrayList);
-        list.setAdapter(adapter);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_atualizar:
-                Toast.makeText(this,"Atualizando os Filmes...",Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return arrayList;
     }
 }
