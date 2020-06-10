@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -27,9 +28,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
+        //Retorna o Tipo da View
         int viewType = getItemViewType(position);
-
         //pega um item em uma posição específica
         ItemFilme filme = getItem(position);
         View itemView = convertView;
@@ -38,6 +38,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
         switch (viewType){
             //Caso seja a view de destaque(ou seja o primeiro item)
             case VIEW_TYPE_DESTAQUE:{
+                /*Não é necessário a implementação do View Holder pois o item de Destaque é chamado
+                 *apenas uma vez.*/
                 itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme_destaque, parent,false);
                 TextView desc =  itemView.findViewById(R.id.item_desc);
                 desc.setText(filme.getDescricao());
@@ -49,20 +51,20 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
             //Qualquer outro item é exibido como um item comum
             case VIEW_TYPE_ITEM: {
                 itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme, parent,false);
-                /*Settando os elementos da ListView(utilização de ViewHolder é mais adequeada
-                 * devido ao alto custo de encontrar cada elemento e criar o mesmo. Utilizando
-                 * o padrão VH, as chamadas são reduzidas através de um elemento estático apenas.*/
-                TextView titulo = itemView.findViewById(R.id.item_titulo);
-                titulo.setText(filme.getTitulo());
-
-                TextView desc =  itemView.findViewById(R.id.item_desc);
-                desc.setText(filme.getDescricao());
-
-                TextView filmeData = itemView.findViewById(R.id.item_data);
-                filmeData.setText(filme.getDataLancamento());
-
-                RatingBar filmeNota = itemView.findViewById(R.id.item_avaliacao);
-                filmeNota.setRating(filme.getAvaliacao());
+                //Implementação do View Holder para Chamada de Diversos Items.
+                ItemFilmeHolder holder;
+                //Verifica se existe um ViewHolder, caso não cria um
+                if(itemView.getTag() == null){
+                    holder = new ItemFilmeHolder(itemView);
+                    itemView.setTag(holder);
+                } else {
+                    //caso o ViewHolder já esteja criado, utiliza o mesmo.
+                    holder = (ItemFilmeHolder) itemView.getTag();
+                }
+                holder.titulo.setText(filme.getTitulo());
+                holder.desc.setText(filme.getDescricao());
+                holder.filmeData.setText(filme.getDataLancamento());
+                holder.filmeNota.setRating(filme.getAvaliacao());
                 break;
             }
         }
@@ -80,5 +82,21 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
     @Override
     public int getViewTypeCount() {
         return 2;
+    }
+    //Classe Aninhada para implementação do DP: ViewHolder
+    public static class ItemFilmeHolder{
+        TextView titulo;
+        TextView desc;
+        TextView filmeData;
+        RatingBar filmeNota;
+        ImageView poster;
+
+        public ItemFilmeHolder(View view){
+            titulo = view.findViewById(R.id.item_titulo);
+            desc = view.findViewById(R.id.item_desc);
+            filmeData = view.findViewById(R.id.item_data);
+            filmeNota = view.findViewById(R.id.item_avaliacao);
+            poster = view.findViewById(R.id.item_poster);
+        }
     }
 }
