@@ -2,7 +2,9 @@ package codes.neuralkatana.proximofilme.pojo;
 
 import android.net.Uri;
 
-public class ItemFilme {
+import java.io.Serializable;
+
+public class ItemFilme implements Serializable {
 
     private String id;
     private String titulo;

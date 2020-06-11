@@ -3,9 +3,12 @@ package codes.neuralkatana.proximofilme.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import codes.neuralkatana.proximofilme.adapter.FilmesAdapter;
 import codes.neuralkatana.proximofilme.pojo.ItemFilme;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String KEY_FILME = "FILME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +27,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView list = findViewById(R.id.list_filmes);
-        ArrayList<ItemFilme> arrayList = returnArrayListItemFilmeMock();
+        final ArrayList<ItemFilme> arrayList = returnArrayListItemFilmeMock();
 
         FilmesAdapter adapter = new FilmesAdapter(this,arrayList);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ItemFilme itemFilme = arrayList.get(position);
+                Intent intent = new Intent(MainActivity.this, FilmeDetalheActivity.class);
+                intent.putExtra(KEY_FILME,itemFilme);
+                startActivity(intent);
+            }
+        });
 
     }
 
