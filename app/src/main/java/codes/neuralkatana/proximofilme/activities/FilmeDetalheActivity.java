@@ -1,16 +1,15 @@
-package codes.neuralkatana.proximofilme.activity;
+package codes.neuralkatana.proximofilme.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Rating;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import codes.neuralkatana.proximofilme.R;
-import codes.neuralkatana.proximofilme.pojo.ItemFilme;
+import codes.neuralkatana.proximofilme.pojos.ItemFilme;
 
 public class FilmeDetalheActivity extends AppCompatActivity {
 

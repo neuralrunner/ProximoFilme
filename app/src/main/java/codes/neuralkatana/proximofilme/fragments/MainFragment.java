@@ -1,4 +1,4 @@
-package codes.neuralkatana.proximofilme.fragment;
+package codes.neuralkatana.proximofilme.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +19,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import codes.neuralkatana.proximofilme.R;
-import codes.neuralkatana.proximofilme.activity.FilmeDetalheActivity;
-import codes.neuralkatana.proximofilme.activity.MainActivity;
-import codes.neuralkatana.proximofilme.adapter.FilmesAdapter;
-import codes.neuralkatana.proximofilme.pojo.ItemFilme;
+import codes.neuralkatana.proximofilme.activities.FilmeDetalheActivity;
+import codes.neuralkatana.proximofilme.activities.MainActivity;
+import codes.neuralkatana.proximofilme.adapters.FilmesAdapter;
+import codes.neuralkatana.proximofilme.pojos.ItemFilme;
 
 public class MainFragment extends Fragment {
 

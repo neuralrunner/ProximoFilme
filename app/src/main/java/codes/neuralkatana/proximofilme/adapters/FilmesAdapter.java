@@ -1,4 +1,4 @@
-package codes.neuralkatana.proximofilme.adapter;
+package codes.neuralkatana.proximofilme.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 import codes.neuralkatana.proximofilme.R;
-import codes.neuralkatana.proximofilme.pojo.ItemFilme;
+import codes.neuralkatana.proximofilme.pojos.ItemFilme;
 
 public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
     private static final int VIEW_TYPE_DESTAQUE = 0;

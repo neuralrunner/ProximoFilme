@@ -1,4 +1,4 @@
-package codes.neuralkatana.proximofilme.pojo;
+package codes.neuralkatana.proximofilme.pojos;
 
 import android.net.Uri;
 
