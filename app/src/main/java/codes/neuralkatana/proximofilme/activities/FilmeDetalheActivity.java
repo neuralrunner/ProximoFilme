@@ -26,9 +26,13 @@ public class FilmeDetalheActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FilmeDetalheFragment fragment = new FilmeDetalheFragment();
+
         Bundle bundle = new Bundle();
         bundle.putSerializable(MainActivity.KEY_FILME, itemFilme);
+
         fragment.setArguments(bundle);
+        //Substituindo o FrameLayout pelo Fragment de forma dinâmica
+        fragmentTransaction.add(R.id.fragment_filme_detalhe,fragment);
         fragmentTransaction.commit();
     }
 }
