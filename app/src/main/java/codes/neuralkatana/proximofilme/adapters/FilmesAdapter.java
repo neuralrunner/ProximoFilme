@@ -41,8 +41,8 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
                 /*Não é necessário a implementação do View Holder pois o item de Destaque é chamado
                  *apenas uma vez.*/
                 itemView = LayoutInflater.from(getContext()).inflate(R.layout.item_filme_destaque, parent,false);
-                TextView desc =  itemView.findViewById(R.id.item_desc);
-                desc.setText(filme.getDescricao());
+                TextView titulo =  itemView.findViewById(R.id.item_titulo);
+                titulo.setText(filme.getTitulo());
 
                 RatingBar filmeNota = itemView.findViewById(R.id.item_avaliacao);
                 filmeNota.setRating(filme.getAvaliacao());
