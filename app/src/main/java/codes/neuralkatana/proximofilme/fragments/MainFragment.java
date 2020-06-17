@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,9 +49,8 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ItemFilme itemFilme = arrayList.get(position);
-                Intent intent = new Intent(getContext(), FilmeDetalheActivity.class);
-                intent.putExtra(MainActivity.KEY_FILME,itemFilme);
-                startActivity(intent);
+                CallBack callBack = (CallBack) getActivity();
+                callBack.onItemSelected(itemFilme);
             }
         });
 
@@ -104,5 +104,9 @@ public class MainFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public interface CallBack{
+        void onItemSelected(ItemFilme itemFilme);
     }
 }
