@@ -41,7 +41,7 @@ public class FilmeDetalheFragment extends Fragment {
         TextView desc = view.findViewById(R.id.item_desc);
         TextView data = view.findViewById(R.id.item_data);
         RatingBar aval = view.findViewById(R.id.item_avaliacao);
-        Button btnTrailer = view.findViewById(R.id.item_btn_trailer);
+        //Button btnTrailer = view.findViewById(R.id.item_btn_trailer);
 
         titulo.setText(itemFilme.getTitulo());
         desc.setText(itemFilme.getDescricao());

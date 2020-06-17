@@ -75,7 +75,7 @@ public class MainFragment extends Fragment {
                 " insectoid aliens are discovered on the ship, the South African government confines" +
                 " them to an internment camp called District 9.",
                 "13/08/2009",4.8f));
-        arrayList.add(new ItemFilme("Inception", " The film stars Leonardo DiCaprio " +
+        arrayList.add(new ItemFilme("Inception", "The film stars Leonardo DiCaprio " +
                 "as a professional thief who steals information by infiltrating the subconscious of " +
                 "his targets. He is offered a chance to have his criminal history erased as payment " +
                 "for the implantation of another person's idea into a target's subconscious",

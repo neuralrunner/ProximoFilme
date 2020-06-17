@@ -3,84 +3,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgGray"
     android:orientation="vertical"
-    android:background="@android:color/black">
+    android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/item_poster"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:src="@drawable/predatorposter"/>
+        android:layout_weight="3">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2.6">
-
-        <LinearLayout
+        <ImageView
+            android:id="@+id/item_poster"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@android:color/white"
-            android:orientation="vertical"
-            android:layout_weight="5"
-            android:padding="10dp">
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/capa" />
 
-            <TextView
-                android:id="@+id/item_titulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Titulo do Filme"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/item_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/item_poster"
+            android:background="@color/bgTBlack"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Predator"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/item_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="xx/xx/xxxx"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-            <TextView
-                android:id="@+id/item_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Schwarzenegger as the leader of an elite paramilitary rescue team on a mission to save hostages in guerrilla-held territory in Central America, who encounter the deadly Predator (Kevin Peter Hall) that is a technologically-advanced alien species that stalk and hunt the main characters"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Data de Lançamento"
+            android:layout_marginTop="5dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textStyle="bold" />
 
-            <RatingBar
-                android:id="@+id/item_avaliacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:rating="5"
-                style="@android:style/Widget.Holo.RatingBar.Small"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                />
+        <TextView
+            android:id="@+id/item_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="xx/xx/xxxx"
+            android:textAppearance="?android:textAppearanceMedium" />
 
-            <Button
-                android:id="@+id/item_btn_trailer"
-                style="@android:style/Widget.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Assistir Trailer"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                />
-        </LinearLayout>
-    </ScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Descrição"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Schwarzenegger as the leader of an elite paramilitary rescue team on a mission to save hostages in guerrilla-held territory in Central America, who encounter the deadly Predator (Kevin Peter Hall) that is a technologically-advanced alien species that stalk and hunt the main characters"
+            android:maxLines="8"
+            android:ellipsize="end"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Avaliação"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/item_avaliacao"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:numStars="5"
+            android:rating="5" />
+    </LinearLayout>
 </LinearLayout>
