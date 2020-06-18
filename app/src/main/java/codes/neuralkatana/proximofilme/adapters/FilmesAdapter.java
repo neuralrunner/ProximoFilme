@@ -20,6 +20,7 @@ import codes.neuralkatana.proximofilme.pojos.ItemFilme;
 public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
     private static final int VIEW_TYPE_DESTAQUE = 0;
     private static final int VIEW_TYPE_ITEM = 1;
+    private boolean useFilmeDestaque = false;
 
     public FilmesAdapter(Context context, ArrayList<ItemFilme> filmes){
         super(context,0,filmes);
@@ -76,7 +77,7 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
         //Operação Ternária, caso seja a view de destaque
         //retornará o valor 0, se não todos as outras view são
         //Itens comuns e retornará o valor 1.
-        return (position == 0 ? VIEW_TYPE_DESTAQUE : VIEW_TYPE_ITEM);
+        return (position == 0 && useFilmeDestaque ? VIEW_TYPE_DESTAQUE : VIEW_TYPE_ITEM);
     }
 
     @Override
@@ -98,5 +99,13 @@ public class FilmesAdapter extends ArrayAdapter<ItemFilme> {
             filmeNota = view.findViewById(R.id.item_avaliacao);
             poster = view.findViewById(R.id.item_poster);
         }
+    }
+
+    public boolean isUseFilmeDestaque() {
+        return useFilmeDestaque;
+    }
+
+    public void setUseFilmeDestaque(boolean useFilmeDestaque) {
+        this.useFilmeDestaque = useFilmeDestaque;
     }
 }

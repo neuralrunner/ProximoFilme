@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.telecom.Call;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,22 +29,48 @@ import codes.neuralkatana.proximofilme.pojos.ItemFilme;
 
 public class MainFragment extends Fragment {
 
+    //Posição do item da lista, declarado inicialmente como invalido
+    private int posicaoItem = ListView.INVALID_POSITION;
+
+    //Chave para recuperação da posição com o savedInstanceState
+    private static final String KEY_POSICAO = "SELECIONADO";
+
+    //Listview declarada para facilitar a codificação dos métodos específicos
+    private ListView list;
+
+    private boolean useFilmeDestaque = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getArguments() != null){
+            //recupera se utilizará o filme destaque ou não
+            //isso depende que estamos utilizando Celulares ou Tablets
+            this.setUseFilmeDestaque(getArguments().getBoolean(MainActivity.KEY_DESTAQUE));
+            //Log.i("isTablet","MainFragment(isUseFilmeDestaque): "+isUseFilmeDestaque());
+        }
         setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //EM CASO EXISTA UM FRAGMENT PRÉVIO
+        //Remove todas as views
+        if (container != null) {
+            container.removeAllViews();
+        }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container,false);
 
-        ListView list = view.findViewById(R.id.list_filmes);
+        list = view.findViewById(R.id.list_filmes);
         final ArrayList<ItemFilme> arrayList = returnArrayListItemFilmeMock();
 
         FilmesAdapter adapter = new FilmesAdapter(getContext(),arrayList);
+
+        //Log.i("isTablet","MainFragment(isUseFilmeDestaque): "+isUseFilmeDestaque());
+        adapter.setUseFilmeDestaque(isUseFilmeDestaque());
+
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -51,9 +79,13 @@ public class MainFragment extends Fragment {
                 ItemFilme itemFilme = arrayList.get(position);
                 CallBack callBack = (CallBack) getActivity();
                 callBack.onItemSelected(itemFilme);
+                posicaoItem = position;
             }
         });
 
+        if(savedInstanceState!= null && savedInstanceState.containsKey(KEY_POSICAO)){
+            posicaoItem = savedInstanceState.getInt(KEY_POSICAO);
+        }
 
         return view;
     }
@@ -90,6 +122,24 @@ public class MainFragment extends Fragment {
         return arrayList;
     }
 
+    //Salva o estado da Instância antes de uma Mudança de tela e etc.
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        if(posicaoItem != ListView.INVALID_POSITION){
+            outState.putInt(KEY_POSICAO,posicaoItem);
+        }
+        super.onSaveInstanceState(outState);
+    }
+
+    //Restaurando o estado da Instância trazendo a posição do listView previamente selecionado
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if(posicaoItem!=ListView.INVALID_POSITION && list!=null){
+            list.smoothScrollToPosition(posicaoItem);
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu,menu);
@@ -108,5 +158,13 @@ public class MainFragment extends Fragment {
 
     public interface CallBack{
         void onItemSelected(ItemFilme itemFilme);
+    }
+
+    public boolean isUseFilmeDestaque() {
+        return useFilmeDestaque;
+    }
+
+    public void setUseFilmeDestaque(boolean useFilmeDestaque) {
+        this.useFilmeDestaque = useFilmeDestaque;
     }
 }
