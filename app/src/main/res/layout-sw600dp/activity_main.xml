@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/main_fragment"
         android:name="codes.neuralkatana.proximofilme.fragments.MainFragment"
         android:layout_width="0dp"
