@@ -9,8 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.FilmeDetalheActivity"></activity>
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.FilmeDetalheActivity"
+            android:label="@string/detalhe_activity_label"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+
+        </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:theme="@style/ProximoFilmeTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
